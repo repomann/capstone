@@ -64,7 +64,7 @@ export default function Register () {
                     value={password}
                     onChange={(e) => {setPassword(e.target.value);}} />
                 </label>
-                <button>Submit</button>
+                <button>Let the fun begin!</button>
             </form>
 
         </div>
