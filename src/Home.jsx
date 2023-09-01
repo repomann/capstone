@@ -51,8 +51,18 @@ function Home() {
         {error && <p>{error}</p>}
         {merch.map((item) => {
             return <div key={item.id}>
-                        {item.title} hello
-                    </div>;
+                    
+
+                        {item.title}
+                       <figure>
+                        <img className={StyleSheet.img}
+                        src={item.image}
+                        alt="Content is not Loading" /></figure> 
+                        {item.category}
+                        {item.description} 
+                    </div>
+                    
+                    ;
         })}
 
 {/* old code */}
