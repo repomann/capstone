@@ -10,14 +10,15 @@ function App() {
 
   return (
     <>
+    <h1>FalsEyes</h1>
+
       <div id="navbar">
-          <Link to='/'>Home</Link>
-          <Link to='/login'>Login</Link>
-          <Link to='/register'>Register</Link>
-          <Link to='/cart'>Cart</Link>
+          <box id='link'><Link to='/'>Home</Link></box>
+          <box id='link'><Link id='link'to='/login'>Login</Link></box>
+          <box id='link'><Link id='link'to='/register'>Register</Link></box>
+          <box id='link'><Link id='link'to='/cart'>Cart</Link></box>
        </div>
       <div id="main-section">
-        <h1>Enjoy your shopping experience!</h1>
         <Routes>  
           <Route path='/' element={<Home/>} />
           {/* <Route path='/item/:id' element={<SinglePage/>}/>  */}

@@ -50,16 +50,18 @@ function Home() {
         {/* <CreateProductForm merch={merch} setMerch={setMerch} /> */}
         {error && <p>{error}</p>}
         {merch.map((item) => {
-            return <div key={item.id}>
+            return <div id="main-content" key={item.id}>
                     
 
-                        {item.title}
+                       <div id="title"> {item.title} </div>
+                       <div id="cat"> Category: {item.category} </div>
                        <figure>
-                        <img className={StyleSheet.img}
-                        src={item.image}
-                        alt="Content is not Loading" /></figure> 
-                        {item.category}
-                        {item.description} 
+                          <img className={StyleSheet.img}
+                          src={item.image}
+                          alt="Content is not Loading" />
+                        </figure> 
+                        
+                        <div id="description"> {item.description} </div>
                     </div>
                     
                     ;
