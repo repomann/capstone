@@ -11,12 +11,18 @@ export default function Login () {
         try {
             const response = await fetch('https://fakestoreapi.com/auth/login',{
                 method:'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                  },
                 body:JSON.stringify({
                     username: "mor_2314",
                     password: "83r5^_"
+                    
                 })
             })
                 const results = await response.json()
+                console.log(results)
+
                 // .then(res=>res.json())
                 // .then(json=>console.log(json))
                 setSuccessMessage(results.message);
@@ -45,9 +51,11 @@ export default function Login () {
                 onChange={(e) => setPassword(e.target.value)}/>
             </label>
         </form>
-        {/* <button type='submit'>submit</button> */}
+
 
         <button onClick={handleSubmit}>Log me in, Scotty!</button>
+
+
         </div>
 
     )

@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react"
-import { fetchAllProducts } from "./api"
-
+import { useNavigate } from "react-router-dom";
 
 
 function Home() {
     const [merch, setMerch] = useState([])
     const [error, setError] = useState(null)
     const [searchParam, setSearchParam] = useState("");  // for Search Bar
+    const navigate = useNavigate();
   
     useEffect(() => {
       async function getAllData() {
@@ -52,8 +52,10 @@ function Home() {
         {merch.map((item) => {
             return <div id="main-content" key={item.id}>
                     
+                    
 
-                       <div id="title"> {item.title} </div>
+                       <div id="title"> {item.title} </div> 
+                       <button onClick={() => {navigate(`/${item.id}`);}}> View Details </button>
                        <div id="cat"> Category: {item.category} </div>
                        <figure>
                           <img className={StyleSheet.img}

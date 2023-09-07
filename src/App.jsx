@@ -4,7 +4,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import Home from './Home.jsx'
 import Login from './Login.jsx'
 import Register from './Register.jsx'
-// import SinglePage from './SinglePage.jsx'
+import SingleItem from './Singlepage.jsx';
 
 function App() {
 
@@ -24,6 +24,7 @@ function App() {
           {/* <Route path='/item/:id' element={<SinglePage/>}/>  */}
           <Route path='/login' element={<Login/>}/>
           <Route path='/register' element={<Register/>}/>
+          <Route path="/:id" element={<SingleItem />} /> 
         </Routes>
       </div>
     </>
