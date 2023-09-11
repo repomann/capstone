@@ -68,19 +68,6 @@ function Home() {
                     
                     ;
         })}
-
-{/* old code */}
-      {/* <div id="main-section">
-        {!!merch.length &&
-          merch.map((el, i) => {
-            return (
-              <div key={i}>
-                <h1>{el.id}</h1>
-              </div>
-            )
-          })}
-      </div> */}
-      
       
       </div>
     )

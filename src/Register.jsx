@@ -37,9 +37,12 @@ export default function Register () {
                     }
                 )
             })
-                .then(res=>res.json())
-                .then(json=>console.log(json))         
-            
+            const results = await response.json()
+            console.log(results)
+
+            // .then(res=>res.json())
+            // .then(json=>console.log(json))
+            setSuccessMessage(results.message);
         } catch (error) {
             setError(error.message);
         }
