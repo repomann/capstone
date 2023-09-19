@@ -1,13 +1,14 @@
 import { useState } from 'react';
 
-// export default function Login (... passed Login Parameters) {
-export default function Login () {
+
+    // export default function Login () {
+ export default function Login ({setIsLoggedIn, token, setToken}) {
     const [successMessage, setSuccessMessage] = useState(null);
     const [error, setError] = useState(null);
     const [userName, setUserName] = useState(' ');
     const [password, setPassword] = useState(' ');
-    const [token, setToken] = useState(' ');
-    const [isLoggedIn, setIsLoggedIn] = useState(false);  // delete this, when finished passing from app.jsx
+    // const [token, setToken] = useState(' ');
+    // const [isLoggedIn, setIsLoggedIn] = useState(false);  // delete this, when finished passing from app.jsx
 
     const handleLogin = async(e) => {
         try {
@@ -24,7 +25,7 @@ export default function Login () {
             })
                 const results = await response.json()
                 console.log(results)
-                localStorage.setToken('token', results.token);
+                localStorage.setItem('token', results.token);
                 setIsLoggedIn(true);
 
                 // .then(res=>res.json())

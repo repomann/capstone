@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
+import SingleItem from "./Singlepage.jsx"
 
 
-
-export default function Cart () {
+export default function Cart (setLocalStorage) {
     const [successMessage, setSuccessMessage] = useState("");
     const [cartItems, setCartItems] = useState(null);
     const [error, setError] = useState(null)
@@ -13,6 +13,7 @@ export default function Cart () {
         // if logedIn state = true; do the API call for the login, if False, use localStorage getItems()
         // this way it will show the items in a user's cart, OR allow a new cart to be created.
         // maybe if it is a user - just leave off the "add to cart" button on single page.  No confusion
+        
         
 
         async function viewCart() {

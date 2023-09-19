@@ -34,7 +34,7 @@ export default function SingleItem () {
 
     function AddToCart() {
 
-      localStorage.setItem('product', JSON.stringify(product));
+      localStorage.setItem('cartItems', JSON.stringify(product));
       return (
         console.log(localStorage)
       )

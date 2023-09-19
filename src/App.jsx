@@ -1,7 +1,7 @@
 
 import './App.css'
 import { Routes, Route, Link } from "react-router-dom";
-import {useState} from "react"
+import {useState, useEffect} from "react"
 import Home from './Home.jsx'
 import Login from './Login.jsx'
 import Register from './Register.jsx'
@@ -9,7 +9,13 @@ import SingleItem from './Singlepage.jsx';
 import Cart from './Cart.jsx';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  useEffect(()=> {
+    console.log(isLoggedIn)
+  }, [isLoggedIn]);
+
+  const [token, setToken] = useState (localStorage.getItem("token") ? localStorage.getItem("token") : "")
+  
   return (
     <>
     <h1>FalsEyes</h1>
@@ -25,7 +31,8 @@ function App() {
           <Route path='/' element={<Home/>} />
           {/* <Route path='/item/:id' element={<SinglePage/>}/>  */}
           {/* pass isLoggedIn status into <Login/>  */}
-          <Route path='/login' element={<Login/>}/>  
+          <Route path='/login' element={<Login setIsLoggedIn={setIsLoggedIn} token = {token} setToken/>}/>  
+          {/* <Route path='/login' element={<Login/>}/>   */}
           <Route path='/register' element={<Register/>}/>
           <Route path="/:id" element={<SingleItem />} /> 
           <Route path="/cart" element={<Cart />} />
