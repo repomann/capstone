@@ -14,28 +14,11 @@ export default function Register () {
         try {
             const response = await fetch('https://fakestoreapi.com/users',{
                 method:"POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
                 body:JSON.stringify(
-                    {
-                        email:'John@gmail.com',
-                        username:'johnd',
-                        password:'m38rmF$',
-                        name:{
-                            firstname:'John',
-                            lastname:'Doe'
-                        },
-                        address:{
-                            city:'kilcoole',
-                            street:'7835 new road',
-                            number:3,
-                            zipcode:'12926-3874',
-                            geolocation:{
-                                lat:'-37.3159',
-                                long:'81.1496'
-                            }
-                        },
-                        phone:'1-570-236-7033'
-                    }
-                )
+                    {username: username, password: password,}),
             })
             const results = await response.json()
             console.log(results)
@@ -68,6 +51,8 @@ export default function Register () {
                     onChange={(e) => {setPassword(e.target.value);}} />
                 </label>
                 <button>Let the fun begin!</button>
+                    {/* Toke: {" "}
+                    <p value={token} onChange={(e) =>setToken(e.target.value)}></p> */}
             </form>
 
         </div>

@@ -1,13 +1,15 @@
 import { useState } from 'react';
 
-
+// export default function Login (... passed Login Parameters) {
 export default function Login () {
     const [successMessage, setSuccessMessage] = useState(null);
     const [error, setError] = useState(null);
     const [userName, setUserName] = useState(' ');
     const [password, setPassword] = useState(' ');
+    const [token, setToken] = useState(' ');
+    const [isLoggedIn, setIsLoggedIn] = useState(false);  // delete this, when finished passing from app.jsx
 
-    const handleSubmit = async(e) => {
+    const handleLogin = async(e) => {
         try {
             const response = await fetch('https://fakestoreapi.com/auth/login',{
                 method:'POST',
@@ -15,21 +17,29 @@ export default function Login () {
                     "Content-Type": "application/json",
                   },
                 body:JSON.stringify({
-                    username: "mor_2314",
-                    password: "83r5^_"
+                    username: userName,
+                    password: password,
                     
                 })
             })
                 const results = await response.json()
                 console.log(results)
+                localStorage.setToken('token', results.token);
+                setIsLoggedIn(true);
 
                 // .then(res=>res.json())
                 // .then(json=>console.log(json))
                 setSuccessMessage(results.message);
         } catch (error) {
             setError(error.message);
-        }
+            
+        }}
+
+    const handleLogout = () => {
+        setIsLoggedIn(false);
+        console.log(isLoggedIn);
     }
+        
 
     return (
         <div>
@@ -37,7 +47,7 @@ export default function Login () {
         {successMessage && <p>{successMessage}</p>}
         {error && <p>{error}</p>}
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleLogin}>
             <label>
                 Username:{" "}
                 <input type="text" 
@@ -53,15 +63,21 @@ export default function Login () {
         </form>
 
 
-        <button onClick={handleSubmit}>Log me in, Scotty!</button>
+        <button onClick={handleLogin}>Log me in, Scotty!</button>
 
+        {/* conditionally render this button to only appear when user is loggedin  */}
+        <button onClick={handleLogout}>Log out</button>
 
-        </div>
+        {/* <div>You are currently Logged in as: {results.username}</div> */}
+
+    </div>
 
     )
 }
 
 
 
-
+// handleLogout (
+//     Button that has logout - onClick changes the login state to false.  Then navigate back to Home.
+// )
 
