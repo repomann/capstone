@@ -16,7 +16,7 @@ export default function SingleItem () {
 
     const [product, setProduct] = useState(null);
     const [error, setError] = useState(null);
-    //  const [cartItems, setCartItems] = useState([]);
+     const [cartItems, setCartItems] = useState([]);
 
     const baseURL = 'https://fakestoreapi.com'
     
@@ -34,7 +34,7 @@ export default function SingleItem () {
 
     function AddToCart() {
 
-      localStorage.setItem('cartItems', JSON.stringify(product));
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
       return (
         console.log(localStorage)
       )
@@ -58,7 +58,7 @@ export default function SingleItem () {
                             <button onClick={() => {navigate(`/cart`);}}> Go to Cart </button>  
                             {/* pass props down into cart - change the ^ button to add items into the array*/}
 
-                            <button onClick={(e)=> AddToCart([e.target.product])}>Add to Cart</button>
+                            <button onClick={(e)=> AddToCart([e.target.cartItems])}>Add to Cart</button>
 
                         </div>}
           </div>
