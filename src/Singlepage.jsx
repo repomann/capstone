@@ -33,11 +33,22 @@ export default function SingleItem () {
     }, [] )
 
     function AddToCart() {
-
-      localStorage.setItem('cartItems', JSON.stringify(cartItems));
-      return (
-        console.log(localStorage)
-      )
+      
+      // setCartItems(JSON.parse(localStorage.getItem(cartItems))) || [];
+      // cartItems.push(product)
+      let cartArray 
+      const items = JSON.parse(localStorage.getItem("cartItems"))
+      if (items==undefined ) {
+          cartArray = [product]
+      } else {
+        cartArray = [... items, product]
+      }
+      
+      console.log(cartArray);
+      localStorage.setItem('cartItems', JSON.stringify(cartArray));
+      // return (
+      //   console.log(localStorage)
+      // )
     }
 
     return (
@@ -48,6 +59,7 @@ export default function SingleItem () {
                            <div id="title"> {product.title} </div>
                            <div id="cat"> Category: {product.category} </div>
                            <div id="cat"> Price: ${product.price} </div>
+                            
                            <figure>
                               <img className={StyleSheet.img}
                                 src={product.image}
@@ -56,9 +68,16 @@ export default function SingleItem () {
                             
                             <div id="description"> {product.description} </div>
                             <button onClick={() => {navigate(`/cart`);}}> Go to Cart </button>  
+
+                           
+                            <button onClick={()=> AddToCart()}>Add to Cart</button>
+                           
+                            
                             {/* pass props down into cart - change the ^ button to add items into the array*/}
 
-                            <button onClick={(e)=> AddToCart([e.target.cartItems])}>Add to Cart</button>
+                            {/* <button onClick={(e)=> AddToCart([e.target.cartItems])}>Add to Cart</button> */}
+
+                            
 
                         </div>}
           </div>
