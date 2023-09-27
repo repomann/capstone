@@ -1,33 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
 import './App.css'
+import { Routes, Route, Link } from "react-router-dom";
+import {useState, useEffect} from "react"
+import Home from './Home.jsx'
+import Login from './Login.jsx'
+import Register from './Register.jsx'
+import SingleItem from './Singlepage.jsx';
+import Cart from './Cart.jsx';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  useEffect(()=> {
+    console.log(isLoggedIn)
+  }, [isLoggedIn]);
 
+  const [token, setToken] = useState (localStorage.getItem("token") ? localStorage.getItem("token") : "")
+  
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <h1>FalsEyes</h1>
+
+      <div id="navbar">
+          <box id='link'><Link to='/'>Home</Link></box>
+          <box id='link'><Link id='link'to='/login'>Login</Link></box>
+          <box id='link'><Link id='link'to='/register'>Register</Link></box>
+          <box id='link'><Link id='link'to='/cart'>Cart</Link></box>
+       </div>
+      <div id="main-section">
+        <Routes>  
+          <Route path='/' element={<Home/>} />
+          {/* <Route path='/item/:id' element={<SinglePage/>}/>  */}
+          {/* pass isLoggedIn status into <Login/>  */}
+          <Route path='/login' element={<Login setIsLoggedIn={setIsLoggedIn} token = {token} setToken/>}/>  
+          {/* <Route path='/login' element={<Login/>}/>   */}
+          <Route path='/register' element={<Register/>}/>
+          <Route path="/:id" element={<SingleItem />} /> 
+          <Route path="/cart" element={<Cart />} />
+        </Routes>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }

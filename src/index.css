@@ -26,14 +26,66 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
+  flex-wrap:wrap;
+  
+  /* place-items: center; */
   min-width: 320px;
-  min-height: 100vh;
+  min-height: 100vh; 
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color:#292e8b
+}
+
+#link {
+  font-size: large;
+  margin: 10px;
+  padding: 10px;
+}
+
+#navbar {
+  border:#747bff;
+  border-style: solid;
+  border-width: 2px;
+  background-color:#213547 ;
+}
+
+#main-content {
+  display: 'flex';
+  justify-content: space-between;
+  margin: 15px;
+  border:#213547;
+  border-style:solid;
+  border-width:2px;
+}
+
+#total-price {
+  font-weight: 800;
+  margin: 10px;
+  padding: 10px;
+  font-size: larger;
+  color:#1a1a1a;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#title {
+  font-weight: 400;
+  font-size: larger;
+  color:#1a1a1a;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#cat {
+  font-weight: 200;
+  font-style: italic;
+}
+
+img {
+  height: 300px;
+  width: auto;
 }
 
 button {
