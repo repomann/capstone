@@ -62,6 +62,15 @@ h1 {
   border-width:2px;
 }
 
+#total-price {
+  font-weight: 800;
+  margin: 10px;
+  padding: 10px;
+  font-size: larger;
+  color:#1a1a1a;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
 #title {
   font-weight: 400;
   font-size: larger;

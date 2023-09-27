@@ -4,11 +4,6 @@ import {useState, useEffect} from "react"
 import { useParams, useNavigate } from "react-router-dom"
 
 
-// import Cart from './Cart.jsx';
-
-// import styles from "... SingleItem.css" // this needs to be created
-
-// what I need: display of single item based on key id, button to add to cart.
 
 export default function SingleItem () {
     const {id} = useParams();  
@@ -34,8 +29,6 @@ export default function SingleItem () {
 
     function AddToCart() {
       
-      // setCartItems(JSON.parse(localStorage.getItem(cartItems))) || [];
-      // cartItems.push(product)
       let cartArray 
       const items = JSON.parse(localStorage.getItem("cartItems"))
       if (items==undefined ) {
@@ -46,9 +39,7 @@ export default function SingleItem () {
       
       console.log(cartArray);
       localStorage.setItem('cartItems', JSON.stringify(cartArray));
-      // return (
-      //   console.log(localStorage)
-      // )
+  
     }
 
     return (
@@ -72,11 +63,7 @@ export default function SingleItem () {
                            
                             <button onClick={()=> AddToCart()}>Add to Cart</button>
                            
-                            
-                            {/* pass props down into cart - change the ^ button to add items into the array*/}
-
-                            {/* <button onClick={(e)=> AddToCart([e.target.cartItems])}>Add to Cart</button> */}
-
+                          
                             
 
                         </div>}

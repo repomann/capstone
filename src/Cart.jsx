@@ -7,19 +7,10 @@ export default function Cart(SingleItem, Login) {
   const [error, setError] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(null);
   // const [isLoggedIn, setIsLoggedIn] = useState(!! localStorage.getItem("token"));
-  const [cartItems, setCartItems] = useState(null); //(localStorage.getItem("cartItems") ? localStorage.getItem("cartItems") : [])
-
-//   useEffect(() => {
-//     console.log(cartItems);
-//     console.log(localStorage.getItem("cartItems"));
-//   }, [cartItems]);
-
-  //   const [cartItems, setCartItems] = useState (localStorage.getItem("cartItems") ? localStorage.getItem("cartItems") : "")
+  const [cartItems, setCartItems] = useState(null); 
+  const totalPrice = calculateTotalPrice();
 
   useEffect(() => {
-    // if logedIn state = true; do the API call for the login, if False, use localStorage getItems()
-    // this way it will show the items in a user's cart, OR allow a new cart to be created.
-    // maybe if it is a user - just leave off the "add to cart" button on single page.  No confusion
 
     async function viewCart() {
     //   const response = await fetch("https://fakestoreapi.com/carts/user/3");
@@ -33,31 +24,80 @@ export default function Cart(SingleItem, Login) {
     viewCart();
   }, []);
 
+
+function RemoveFromCart(itemId) {
+    // Retrieve the current cart items from local storage
+    const cartItems = JSON.parse(localStorage.getItem("cartItems"));
+  
+    if (cartItems) {
+      // Find the index of the item to remove based on its id
+      const itemIndex = cartItems.findIndex((item) => item.id === itemId);
+  
+      if (itemIndex !== -1) {
+        // Remove the item from the cart array
+        cartItems.splice(itemIndex, 1);
+  
+        // Update local storage with the modified cart
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  
+        // Update the state to reflect the changes in your component
+        setCartItems(cartItems);
+      }
+    }
+  }
+
+  function calculateTotalPrice() {
+    // Retrieve the current cart items from local storage
+    const cartItems = JSON.parse(localStorage.getItem("cartItems"));
+  
+    if (cartItems) {
+      // Use the reduce method to sum the prices
+      const totalPrice = cartItems.reduce((accumulator, item) => {
+        return accumulator + item.price;
+      }, 0); // Start with an initial value of 0
+  
+      return totalPrice;
+    }
+  
+    return 0; // Return 0 if there are no items in the cart
+  }
+  
+  
+  
+  
+
   return (
     // <h1>Your Cart</h1>
     <div id="container">
+        
+
       {cartItems ? (
+        
         <div>
+        <div id="total-price">Total Price: ${totalPrice.toFixed(2)}</div>
+        <button>Proceed to Checkout</button>
           {cartItems.map((items) => {
             return (
+                
               <div id="main-content" key={items.id}>
                 <div id="title"> Product {items.title}</div>
+                {/* <figure>
+                          <img className={StyleSheet.img}
+                          src={item.image}
+                          alt="Content is not Loading" />
+                </figure>  */}
+                <div id="title"> Price ${items.price}</div>
+                <button onClick={()=> RemoveFromCart(items.id)}>Remove from cart</button>
+
               </div>
             );
           })}
         </div>
       ) : (
-        <h1> No cart </h1>
+        <h2> There are no items in your cart </h2>
       )}
     </div>
   );
 }
 
-// OLD CODE
-// (
-//     <div>
-//         {cartItems.map((cartItems)) && <div id="main-content" key={cartItems.id}>
-//             <div id="title"> Product {cartItems.title}</div>
-//             </div>}
-//     </div>
-// )
+
